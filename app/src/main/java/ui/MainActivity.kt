@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         removeTaskButton.setOnClickListener {
             val taskId = taskNameInput.text.toString().trim().toIntOrNull()
             if (taskId != null) {
-                val taskToRemove = taskManager.removeTask(taskId)
+                val taskToRemove = taskManager.removeTask(Int)
                 if (taskToRemove != null) {
                     printAllTasks()
                     taskNameInput.text.clear()
