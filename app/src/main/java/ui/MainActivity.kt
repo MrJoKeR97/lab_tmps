@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import builder.SimpleTaskBuilder
 import builder.TaskBuilder
@@ -34,23 +33,7 @@ class MainActivity : AppCompatActivity() {
         taskListTextView = findViewById(R.id.task_list_text_view)
         taskNameInput = findViewById(R.id.task_name_input)
         addTaskButton = findViewById(R.id.add_task_button)
-        val removeTaskButton = findViewById<Button>(R.id.delete_task_button)
-        removeTaskButton.setOnClickListener {
-            val taskId = taskNameInput.text.toString().trim().toIntOrNull()
-            if (taskId != null) {
-                val taskToRemove = taskManager.removeTask(Int)
-                if (taskToRemove != null) {
-                    printAllTasks()
-                    taskNameInput.text.clear()
-                } else {
-                    Toast.makeText(this, "Task not found", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(this, "Please enter a valid task ID", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        // Initialize TaskManager, TaskNotificationService, TaskFactory, and TaskBuilder
+               // Initialize TaskManager, TaskNotificationService, TaskFactory, and TaskBuilder
         val taskRepository = InMemoryTaskRepository()
         val notifiable = SimpleNotifier()
         taskManager = TaskManager.getInstance(taskRepository)
